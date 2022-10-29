@@ -5,7 +5,7 @@ export const LoginButton = styled.button`
 background: #007bff;
 text-transform: uppercase;
 letter-spacing: 0.2rem;
-width: ${props=>props.resizeWidth?'props.resize': '30%' };
+width: ${props=>props.resizeWidth?'props.resizeWidth': '30%' };
 height: 2rem;
 border: none;
 color: white !important;

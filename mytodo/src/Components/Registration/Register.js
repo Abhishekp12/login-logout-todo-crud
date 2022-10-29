@@ -12,55 +12,37 @@ const [inputData, setInputData] = useState({
 const[errorMessage,setErorMessage]=useState(null);
 const history =useHistory;
 
-useEffect(()=>{
-  const savedemail = localStorage.getItem('email');
-  const savedpassword = localStorage.getItem('password');
-if( savedemail && savedpassword){
-  localStorage.removeItem("email");
-  localStorage.removeItem("password");
-}
-},[])
-
-useEffect(()=>{
-    if( inputData.email.trim().length<6 && inputData.password.trim().length<6){
-        setErorMessage(
-            <small className="text-danger">
-            please enter the email & password atleast of six character </small>
-        )}
-        else{
-            setErorMessage(null);    
-        }
-},[
-    inputData.email,
-    inputData.password  
-])
     const handleChange=(e)=>{
     const name = e.target.name;
     const value=e.target.value;
     setInputData(val=>({...val, [name]: value}) ) ;
       }
-      console.log(inputData, 5558888)  
- const handleSubmit=(e)=>{
-e.preventDefault();
-if(errorMessage !== null){
-    localStorage.setItem('email', inputData.email );
-    localStorage.setItem('password', inputData.password);
-    // localStorage.setItem('myToken', '123abc');
-    history.push('/');
-}
+ 
 
+
+ const handleSubmit=(e)=>{
+  e.preventDefault();
+  localStorage.setItem('tokenlogin', true);
+  history.push('/');
  }  
 
-const handleNavigation=()=>{
-    if( errorMessage !== null){
-        let path='/'
-        history.push(path);
-    }
-  
-}
 
-console.log(errorMessage, 5558865);
 
+
+// const CreateUserCred=async()=>{
+//   const requestedData={
+//     method:'POST',
+//     header:{'Content-type':'Application/json'},
+//     body:JSON.Stringfy({
+//       'email':inputData.email,
+//       'password':  inputData.password,
+//       'token':'ru1',
+//     })
+//   }
+//   const response = await fetch('http://localhost:3001/users',requestedData );
+//   const data=await response.json();
+//   console.log(data, 7595)
+// }
 
   return (
     <div>
@@ -80,7 +62,7 @@ key={'password'}
   />
   </InputContainer>
   <div className='d-flex justify-content-center mb-4 mt-2'> 
-  <LoginButton ><Link  to="/" style={{color:'white',textDecoration:'none'}}> Create </Link></LoginButton> 
+  <LoginButton ><Link  style={{color:'white',textDecoration:'none'}}> SIGN IN </Link></LoginButton> 
    
   </div> 
   <div className='d-flex justify-content-center mb-1'>{errorMessage}</div> 

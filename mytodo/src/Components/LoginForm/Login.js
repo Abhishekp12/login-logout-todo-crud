@@ -13,49 +13,48 @@ const Login = (props) => {
 const[errorMessage,setErorMessage]=useState(null);
   const history =useHistory;
 
-  const savedemail = localStorage.getItem('email');
-  const savedpassword = localStorage.getItem('password');
 
 
-
-useEffect(()=>{
-  checkExistingData();
-},[
-  savedemail,
-  savedpassword,
-  inputData.email,
-  inputData.password,
-])
-
-console.log(props, 555555)
 const handleChange=(e)=>{
   const name = e.target.name;
   const value=e.target.value;
   setInputData(val=>({...val, [name]: value}) ) ;
     }
 
-
-  const checkExistingData=()=>{
-    if(savedemail  == inputData.email  && savedpassword== inputData.password){
-      setRegisterBoolean(false);
-    }else{
-      setRegisterBoolean(true);
-    }
-  }
-
-  const handleSubmit=(e)=>{
+const handleSubmit=(e)=>{
     e.preventDefault();
-    if(!registerBoolean){
-      let path='/home';
-      history.push(path);
-    }else{
-      setErorMessage(
-        <small className="text-danger">
-        please enter valid email & password or if you don't have account ,please  register  </small>
-    )}
+  //  checkLogincred();
+  const getToken =  localStorage.getItem('tokenlogin');
+if(getToken ){
+  setRegisterBoolean(false);
+  history.push('/home');
+}else{
+      setRegisterBoolean(true);
+    setErorMessage(
+      <small className="text-danger">
+      please enter valid email & password or if you don't have account ,please  register  </small>
+  )
+}
     }
      
     
+// const checkLogincred=async()=>{
+//     const response = await fetch('http://localhost:3001/users');
+//     const data = await response.json();
+//     console.log(response, 55566888);
+//   if(data.email  == inputData.email  && data.email== inputData.password ){
+//     setRegisterBoolean(false);
+//     localStorage.setItem('tokenlogin', data.token);
+//     let path='/home';
+//       history.push(path);
+//   }else{
+//     setRegisterBoolean(true);
+//     setErorMessage(
+//       <small className="text-danger">
+//       please enter valid email & password or if you don't have account ,please  register  </small>
+//   )
+//   }
+// }
 
   return (
     <div>
@@ -75,7 +74,7 @@ key={'password'}
    </InputContainer>
    <div className='d-flex justify-content-center mb-4 mt-2'> 
    <LoginButton >
-    {!registerBoolean? (<Link  to="/home" style={{color:'white',textDecoration:'none'}}> Create </Link>) :(
+    {!registerBoolean? (<Link to='/home' style={{color:'white',textDecoration:'none'}}> SIGN IN </Link>) :(
     <p className='text-white ' style={{margin:'auto auto'}}> Sign in</p> 
     )}
 
@@ -83,11 +82,11 @@ key={'password'}
     </LoginButton> 
    </div>
  {errorMessage?<div className='text-danger mt-1 mb-1 ml-1 mr-1 w-4'>{errorMessage}</div>:null}
-   {registerBoolean?(
+  
   <div className="text-center text-primary">
   <p>Do'nt have account ? <Link to='/register' >Sign up</Link></p>
    </div> 
-   ):null}
+
 
 </form>
         </FormContainer>
