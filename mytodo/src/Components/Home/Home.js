@@ -7,17 +7,11 @@ const Home = () => {
 
 const  history=useHistory;
 
-const handleLogout=()=>{
-  console.log('doing')
-history.push('/')
-}
 
   return (
     <div>     
   <div className="d-flex justify-content-end  text-primary mr-2 pr-2 mt-2 pt-2">
- {/* <button onClick={handleLogout} >  */}
  <Link to='/' style={{color:'blue',textDecoration:'none',cursor:'pointer', maarginRight:'5px', fontWeight:'bold'}} >LOGOUT </Link> 
- {/* </button> */}
  </div> 
    <div> 
       <Todo/>

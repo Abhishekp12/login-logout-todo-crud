@@ -17,8 +17,6 @@ const history =useHistory;
     const value=e.target.value;
     setInputData(val=>({...val, [name]: value}) ) ;
       }
- 
-
 
  const handleSubmit=(e)=>{
   e.preventDefault();
@@ -62,7 +60,7 @@ key={'password'}
   />
   </InputContainer>
   <div className='d-flex justify-content-center mb-4 mt-2'> 
-  <LoginButton ><Link  style={{color:'white',textDecoration:'none'}}> SIGN IN </Link></LoginButton> 
+  <LoginButton ><Link to='/home' style={{color:'white',textDecoration:'none'}}> SIGN IN </Link></LoginButton> 
    
   </div> 
   <div className='d-flex justify-content-center mb-1'>{errorMessage}</div> 

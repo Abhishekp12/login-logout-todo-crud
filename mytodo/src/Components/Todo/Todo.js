@@ -6,6 +6,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 import { BiSave } from 'react-icons/bi';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import{Link} from'react-router-dom';
 
 const Todo = () => {
   
@@ -167,7 +168,9 @@ onChange={(e)=>handleinputfieldEditable(e, data ,index )}
   </div>
 </div>
 
-
+<div  className='d-flex justify-content-end'>
+  <Link to='/features' style={{color:'blue',textDecoration:'none',cursor:'pointer', maarginRight:'5px',  maarginTop:'15px'}}>click here to access more features</Link>
+</div>
     </div>
   )
 }
